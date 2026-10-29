@@ -11,24 +11,27 @@ var VideoPlayerIcons = {
     'custom':       "<svg xmlns='http://www.w3.org/2000/svg' fill-rule='evenodd' clip-rule='evenodd' viewBox='0 0 24 24'><path d='M24 17.98H11L4 23v-5.02H0V1h24v16.98zM13 8h-2v6h2V8zm-1-1.5A1.25 1.25 0 1 0 12 4a1.25 1.25 0 0 0 0 2.5z'/></svg>"
 };
 
+
+
+
 /**
  * 
- * @param {Object}                   schema
- * @param {String}                  [schema.src]
- * @param {Object[]}                [schema.playlist]
- * @param {String}                  [schema.jump] in seconds
- * @param {String}                  [schema.shortJump] in seconds
- * @param {Boolean}                 [schema.muted]
- * @param {Boolean}                 [schema.autoplay]
- * @param {Boolean}                 [schema.loop]
- * @param {Boolean}                 [schema.showName]
- * @param {Function}                [schema.onClose]
- * @param {Array}                   [schema.classes]
- * @param {Object[]}                [schema.controls]
- * @param {'close'|'fullscreen'|'sound'|'custom'}     schema.controls[].type
- * @param {SVGElement}              [schema.controls[].icon]
- * @param {Function}                [schema.controls[].onClick]
- * @param {Number}                  [schema.startAtPerc]
+ * @param {Object}                                   schema
+ * @param {String}                                  [schema.src]
+ * @param {Object[]}                                [schema.playlist]
+ * @param {String}                                  [schema.jump] in seconds
+ * @param {String}                                  [schema.shortJump] in seconds
+ * @param {Boolean}                                 [schema.muted]
+ * @param {Boolean}                                 [schema.autoplay]
+ * @param {Boolean}                                 [schema.loop]
+ * @param {Boolean}                                 [schema.showName]
+ * @param {Function}                                [schema.onClose]
+ * @param {Array}                                   [schema.classes]
+ * @param {Object[]}                                [schema.controls]
+ * @param {'close'|'fullscreen'|'sound'|'custom'}    schema.controls[].type
+ * @param {SVGElement}                              [schema.controls[].icon]
+ * @param {Function}                                [schema.controls[].onClick]
+ * @param {Number}                                  [schema.startAtPerc]
  */
 function VideoPlayer( schema ) {
 
@@ -174,6 +177,14 @@ function VideoPlayer( schema ) {
 
 };
 
+
+
+
+/**
+ * @method
+ * @public
+ * @returns {void}
+ */
 VideoPlayer.prototype.destroy = function() {
 
     this._removeEventListeners();
@@ -240,6 +251,12 @@ VideoPlayer.prototype.destroy = function() {
 
 
 
+/**
+ * @method
+ * @private
+ * @param {String} urlString 
+ * @returns {String}
+ */
 VideoPlayer.prototype._extractFilename = function( urlString ) {
 
     try {
@@ -263,6 +280,11 @@ VideoPlayer.prototype._extractFilename = function( urlString ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._overlayMakeActive = function() {
 
     this._elements.overlay.classList.add( 'active' );
@@ -271,6 +293,11 @@ VideoPlayer.prototype._overlayMakeActive = function() {
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._overlayMakeInactive = function() {
 
     this._elements.overlay.classList.remove( 'active' );
@@ -279,6 +306,11 @@ VideoPlayer.prototype._overlayMakeInactive = function() {
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._resetIdleTimer = function() {
 
     clearTimeout( this._settings.timeoutIdle );
@@ -295,6 +327,12 @@ VideoPlayer.prototype._resetIdleTimer = function() {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Number} seconds 
+ * @returns {String}
+ */
 VideoPlayer.prototype._formatDuration = function( seconds ) {
 
     var totalSeconds = Math.floor( seconds );
@@ -353,24 +391,45 @@ VideoPlayer.prototype._formatDuration = function( seconds ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_mouseenter_overlay = function() {
 
     this._overlayMakeActive();
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_mouseleave_overlay = function() {
 
     this._overlayMakeInactive();
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_mousemove_overlay = function() {
 
     this._overlayMakeActive();
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_wheel_overlay = function( evt ) {
 
     evt.preventDefault();
@@ -403,6 +462,12 @@ VideoPlayer.prototype._evt_wheel_overlay = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_click_custom = function( evt ) {
 
     if ( this._settings.onClickCustomCallback !== null ) {
@@ -413,6 +478,12 @@ VideoPlayer.prototype._evt_click_custom = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_click_seekWrap = function( evt ) {
 
     evt.stopPropagation();
@@ -444,6 +515,12 @@ VideoPlayer.prototype._evt_click_seekWrap = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_click_fullscreen = function( evt ) {
 
     evt.stopPropagation();
@@ -493,6 +570,12 @@ VideoPlayer.prototype._evt_click_fullscreen = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_click_sound = function( evt ) {
 
     evt.stopPropagation();
@@ -509,6 +592,12 @@ VideoPlayer.prototype._evt_click_sound = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_click_playPause = function( evt ) {
 
     evt.stopPropagation();
@@ -527,6 +616,12 @@ VideoPlayer.prototype._evt_click_playPause = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_click_overlay = function( evt ) {
 
     if ( this._settings.timeoutClick !== null ) {
@@ -545,6 +640,12 @@ VideoPlayer.prototype._evt_click_overlay = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_dblclick_overlay = function( evt ) {
 
     if ( this._settings.timeoutClick !== null ) {
@@ -559,6 +660,12 @@ VideoPlayer.prototype._evt_dblclick_overlay = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_click_jumpForwards = function( evt ) {
 
     evt.stopPropagation();
@@ -577,6 +684,12 @@ VideoPlayer.prototype._evt_click_jumpForwards = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_click_shortJumpForwards = function( evt ) {
 
     evt.stopPropagation();
@@ -595,6 +708,12 @@ VideoPlayer.prototype._evt_click_shortJumpForwards = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_click_jumpBackwards = function( evt ) {
 
     evt.stopPropagation();
@@ -613,6 +732,12 @@ VideoPlayer.prototype._evt_click_jumpBackwards = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_click_shortJumpBackwards = function( evt ) {
 
     evt.stopPropagation();
@@ -631,6 +756,12 @@ VideoPlayer.prototype._evt_click_shortJumpBackwards = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_click_close = function( evt ) {
 
     evt.stopPropagation();
@@ -706,6 +837,12 @@ VideoPlayer.prototype._evt_click_gotoNext = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Event} evt
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_click_gotoPrevious = function( evt ) {
 
     evt.stopPropagation();
@@ -718,7 +855,7 @@ VideoPlayer.prototype._evt_click_gotoPrevious = function( evt ) {
 
     if ( this._elements.controls.previous.classList.contains( 'inactive' ) ) {
 
-        return false;
+        return;
 
     }
 
@@ -761,6 +898,11 @@ VideoPlayer.prototype._evt_click_gotoPrevious = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_timeupdate_video = function() {
 
     if ( this._elements.video === null ) {
@@ -795,6 +937,11 @@ VideoPlayer.prototype._evt_timeupdate_video = function() {
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_volumechange_video = function() {
 
     if ( this._elements.controls.sound === null ) {
@@ -815,6 +962,11 @@ VideoPlayer.prototype._evt_volumechange_video = function() {
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_loadedmetadata_video = function() {
 
     this._elements.parent.classList.add( 'loadedmetadata' );
@@ -845,12 +997,22 @@ VideoPlayer.prototype._evt_loadedmetadata_video = function() {
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_play_video = function() {
 
     this._elements.play.innerHTML = VideoPlayerIcons.play;
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_pause_video = function() {
 
     if ( this._elements.play !== null ) {
@@ -861,6 +1023,11 @@ VideoPlayer.prototype._evt_pause_video = function() {
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_error_video = function() {
 
     if ( this._elements.video.error ) {
@@ -891,6 +1058,11 @@ VideoPlayer.prototype._evt_error_video = function() {
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._evt_keydown = function( evt ) {
 
     if ( evt.key === 'f' ) {
@@ -967,6 +1139,12 @@ VideoPlayer.prototype._evt_keydown = function( evt ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Object} schema
+ * @returns {void}
+ */
 VideoPlayer.prototype._createFromSchema = function( schema ) {
 
     this._addElements( schema );
@@ -975,6 +1153,12 @@ VideoPlayer.prototype._createFromSchema = function( schema ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @param {Object} schema
+ * @returns {void}
+ */
 VideoPlayer.prototype._addElements = function( schema ) {
 
     this._elements.parent = document.createElement( 'video-player' );
@@ -1212,6 +1396,11 @@ VideoPlayer.prototype._addElements = function( schema ) {
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._addEventListeners = function() {
 
     window.addEventListener( 'keydown', this._bound_keydown );
@@ -1281,6 +1470,11 @@ VideoPlayer.prototype._addEventListeners = function() {
 
 };
 
+/**
+ * @method
+ * @private
+ * @returns {void}
+ */
 VideoPlayer.prototype._removeEventListeners = function() {
 
     window.removeEventListener( 'keydown', this._bound_keydown );
