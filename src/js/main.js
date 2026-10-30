@@ -766,13 +766,13 @@ VideoPlayer.prototype._evt_click_close = function( evt ) {
 
     evt.stopPropagation();
 
-    this.destroy();
-
     if ( this._settings.onCloseCallback !== null ) {
 
         this._settings.onCloseCallback( this._elements.video.src );
 
     }
+
+    this.destroy();
 
 };
 
