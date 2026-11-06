@@ -470,6 +470,8 @@ VideoPlayer.prototype._evt_wheel_overlay = function( evt ) {
  */
 VideoPlayer.prototype._evt_click_custom = function( evt ) {
 
+    evt.stopPropagation();
+
     if ( this._settings.onClickCustomCallback !== null ) {
 
         this._settings.onClickCustomCallback( evt, this._settings.src );
