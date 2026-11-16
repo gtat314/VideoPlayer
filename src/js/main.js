@@ -187,6 +187,15 @@ function VideoPlayer( schema ) {
  */
 VideoPlayer.prototype.destroy = function() {
 
+    if ( this._elements.parent === null ) {
+
+        return;
+
+    }
+
+    clearTimeout( this._settings.timeoutIdle );
+    clearTimeout( this._settings.timeoutClick );
+
     this._removeEventListeners();
 
     while( this._elements.parent.firstChild ) {
