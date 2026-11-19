@@ -29,7 +29,7 @@ var VideoPlayerIcons = {
  * @param {Array}                                   [schema.classes]
  * @param {Object[]}                                [schema.controls]
  * @param {'close'|'fullscreen'|'sound'|'custom'}    schema.controls[].type
- * @param {SVGElement}                              [schema.controls[].icon]
+ * @param {String}                                  [schema.controls[].icon] A string containing SVG markup to be inserted into the control using innerHTML
  * @param {Function}                                [schema.controls[].onClick]
  * @param {Number}                                  [schema.startAtPerc]
  */
